@@ -121,9 +121,8 @@ async def on_startup(app) -> None:
     for chat_id in CHAT_IDS:
         config = get_user_schedule(chat_id)
         now    = datetime.now()
-        window_start = now.replace(
-            hour=config["window_start_hour"], minute=0, second=0, microsecond=0
-        )
+        wh, wm = map(int, config["window_start"].split(":"))
+        window_start = now.replace(hour=wh, minute=wm, second=0, microsecond=0)
         if now >= window_start:
             window_start += timedelta(days=1)
 

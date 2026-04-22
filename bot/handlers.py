@@ -12,7 +12,9 @@ async def daily_schedule_refresh(context: ContextTypes.DEFAULT_TYPE) -> None:
     and schedules the first question. Each fired question schedules the next."""
     chat_id  = context.job.data["chat_id"]
     config   = get_user_schedule(chat_id)
-    window_s = (config["window_end_hour"] - config["window_start_hour"]) * 3600
+    sh, sm   = map(int, config["window_start"].split(":"))
+    eh, em   = map(int, config["window_end"].split(":"))
+    window_s = (eh * 60 + em - sh * 60 - sm) * 60
     delays   = calculate_delays(chat_id, config["n"], window_s)
 
     context.bot_data[chat_id] = {"delays": delays, "index": 0}
@@ -31,7 +33,7 @@ async def push_question(context: ContextTypes.DEFAULT_TYPE) -> None:
     delays    = state.get("delays", [])
     index     = state.get("index", 0)
 
-    question  = pick_question()
+    question  = pick_question(chat_id)
     await push_send_question(context, chat_id, question)
 
     next_index = index + 1
@@ -51,7 +53,7 @@ async def cmd_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    question = pick_question()
+    question = pick_question(update.effective_user.id)
     context.user_data["question"] = question
     await send_question(update.message, question)
 
@@ -77,6 +79,6 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif data == "next":
         await query.edit_message_reply_markup(reply_markup=None)
-        question = pick_question()
+        question = pick_question(query.from_user.id)
         context.user_data["question"] = question
         await send_question(query.message, question)

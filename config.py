@@ -14,8 +14,9 @@ CHAT_IDS = [
 # Need to modify this code by hand.
 USER_SCHEDULES = {
     CHAT_IDS[0]: {
-        "window_start_hour": '12:00:00',  # 12:00:00
-        "window_end_hour":   '23:59:00',  # 23:00:00
+        "window_start": "12:00",
+        "window_end":   "23:59",
+        "n":            5,
     }
 }
 
