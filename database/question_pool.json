@@ -1,0 +1,163 @@
+[
+    {
+        "id": 1,
+        "type": "MC",
+        "topic": "Solar System",
+        "sub_topic": "Planetary Rings",
+        "question": "Which planet in our Solar System is known for having the most prominent ring system?",
+        "options": {
+            "A": "Jupiter",
+            "B": "Saturn",
+            "C": "Uranus",
+            "D": "Neptune",
+            "E": "None of the above"
+        },
+        "answer": "B",
+        "explanation": "Saturn is famous for its extensive and highly visible ring system, which is much more prominent than the rings of the other giant planets.",
+        "image": "database/imgs/id_1.jpg"
+    },
+    {
+        "id": 2,
+        "type": "MC",
+        "topic": "Galaxies",
+        "sub_topic": "Milky Way",
+        "question": "What is the name of the galaxy that contains our Solar System?",
+        "options": {
+            "A": "Andromeda Galaxy",
+            "B": "Whirlpool Galaxy",
+            "C": "Milky Way Galaxy",
+            "D": "Sombrero Galaxy",
+            "E": "None of the above"
+        },
+        "answer": "C",
+        "explanation": "The Solar System is located in the Milky Way Galaxy, a barred spiral galaxy that contains hundreds of billions of stars."
+    },
+    {
+        "id": 3,
+        "type": "MC",
+        "topic": "Stars",
+        "sub_topic": "The Sun",
+        "question": "What type of celestial object is the Sun?",
+        "options": {
+            "A": "Planet",
+            "B": "Asteroid",
+            "C": "Comet",
+            "D": "Star",
+            "E": "None of the above"
+        },
+        "answer": "D",
+        "explanation": "The Sun is a star, specifically a G-type main-sequence star, and it is the central object of our Solar System."
+    },
+    {
+        "id": 4,
+        "type": "MC",
+        "topic": "Solar System",
+        "sub_topic": "Moon Phases",
+        "question": "Which phase occurs when the Moon is positioned between Earth and the Sun?",
+        "options": {
+            "A": "Full Moon",
+            "B": "First Quarter",
+            "C": "New Moon",
+            "D": "Waxing Gibbous",
+            "E": "None of the above"
+        },
+        "answer": "C",
+        "explanation": "A New Moon occurs when the Moon is roughly between Earth and the Sun, causing the illuminated side to face away from Earth."
+    },
+    {
+        "id": 5,
+        "type": "MC",
+        "topic": "Mechanics",
+        "sub_topic": "Gravity & Orbits",
+        "question": "What is the primary force that keeps planets in orbit around the Sun?",
+        "options": {
+            "A": "Magnetism",
+            "B": "Nuclear force",
+            "C": "Friction",
+            "D": "Gravity",
+            "E": "None of the above"
+        },
+        "answer": "D",
+        "explanation": "Gravity is the force that attracts planets toward the Sun and keeps them moving in orbital paths."
+    },
+    {
+        "id": 6,
+        "type": "MC",
+        "topic": "Solar System",
+        "sub_topic": "Planets",
+        "question": "Which planet is often called the Red Planet?",
+        "options": {
+            "A": "Venus",
+            "B": "Mars",
+            "C": "Mercury",
+            "D": "Jupiter",
+            "E": "None of the above"
+        },
+        "answer": "B",
+        "explanation": "Mars is called the Red Planet because iron oxide, or rust, on its surface gives it a reddish appearance."
+    },
+    {
+        "id": 7,
+        "type": "MC",
+        "topic": "Measurement",
+        "sub_topic": "Astronomical Units",
+        "question": "What is a light-year a measure of?",
+        "options": {
+            "A": "Time",
+            "B": "Brightness",
+            "C": "Mass",
+            "D": "Distance",
+            "E": "None of the above"
+        },
+        "answer": "D",
+        "explanation": "A light-year is a unit of distance equal to how far light travels in one year, about 9.46 trillion kilometers."
+    },
+    {
+        "id": 8,
+        "type": "MC",
+        "topic": "Stars",
+        "sub_topic": "Stellar Evolution",
+        "question": "Which of the following objects is most likely to become a black hole after the end of its life cycle?",
+        "options": {
+            "A": "A very massive star",
+            "B": "A small asteroid",
+            "C": "A terrestrial planet",
+            "D": "A comet nucleus",
+            "E": "None of the above"
+        },
+        "answer": "A",
+        "explanation": "A very massive star can collapse under its own gravity after a supernova explosion and form a black hole if enough mass remains."
+    },
+    {
+        "id": 9,
+        "type": "MC",
+        "topic": "Solar System",
+        "sub_topic": "Planets",
+        "question": "Which planet has the shortest orbital period around the Sun?",
+        "options": {
+            "A": "Earth",
+            "B": "Mars",
+            "C": "Mercury",
+            "D": "Venus",
+            "E": "None of the above"
+        },
+        "answer": "C",
+        "explanation": "Mercury is the closest planet to the Sun and completes one orbit in about 88 Earth days, the shortest orbital period of any planet."
+    },
+    {
+        "id": 10,
+        "type": "MC",
+        "topic": "Solar System",
+        "sub_topic": "Small Bodies",
+        "question": "What is the term for a rocky object that enters Earth's atmosphere and produces a streak of light?",
+        "options": {
+            "A": "Asteroid",
+            "B": "Meteor",
+            "C": "Comet",
+            "D": "Nebula",
+            "E": "None of the above"
+        },
+        "answer": "B",
+        "explanation": "A meteor is the visible streak of light produced when a meteoroid enters Earth's atmosphere and burns up due to frictional heating."
+    }
+]
