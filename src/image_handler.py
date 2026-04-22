@@ -17,6 +17,7 @@ def compress_images(quality: int = 60) -> None:
         dest = IMGS_DIR / f"{src.stem}_compressed.jpg"
         with Image.open(src) as img:
             img.convert("RGB").save(dest, format="JPEG", quality=quality, optimize=True)
+        src.unlink()
 
 
 def decompress_image(compressed_path: str) -> Path:

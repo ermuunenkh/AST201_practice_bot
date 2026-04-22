@@ -1,4 +1,5 @@
 import sqlite3
+import pandas as pd
 from config import DB_PATH, SCHEMA_PATH
 
 
@@ -13,6 +14,17 @@ def init_db() -> None:
         return
     with _connect() as conn:
         conn.executescript(SCHEMA_PATH.read_text())
+
+
+def get_user_data(user_id: int, unique: bool = False) -> pd.DataFrame:
+    with _connect() as conn:
+        query = "SELECT * FROM user_history WHERE user_id = ? ORDER BY answered_at"
+        df = pd.read_sql_query(query, conn, params=(user_id,))
+
+    if unique:
+        df = df.drop_duplicates(subset="question_id", keep="last")
+
+    return df
 
 
 def record_answer(user_id: int, question_id: int, topic: str, sub_topic: str, chosen: str, is_correct: bool) -> None:

@@ -14,7 +14,7 @@
         },
         "answer": "B",
         "explanation": "Saturn is famous for its extensive and highly visible ring system, which is much more prominent than the rings of the other giant planets.",
-        "image": "database/imgs/id_1.jpg"
+        "image": "database/imgs/id_1_compressed.jpg"
     },
     {
         "id": 2,
@@ -30,7 +30,8 @@
             "E": "None of the above"
         },
         "answer": "C",
-        "explanation": "The Solar System is located in the Milky Way Galaxy, a barred spiral galaxy that contains hundreds of billions of stars."
+        "explanation": "The Solar System is located in the Milky Way Galaxy, a barred spiral galaxy that contains hundreds of billions of stars.",
+        "image": "database/imgs/id_2_compressed.jpg"
     },
     {
         "id": 3,
