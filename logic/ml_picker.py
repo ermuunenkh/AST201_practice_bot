@@ -2,6 +2,7 @@ import random
 import numpy as np
 import pandas as pd
 from datetime import datetime, timezone
+from sklearn.preprocessing import StandardScaler
 
 
 def _compute_features(df: pd.DataFrame) -> pd.DataFrame:
@@ -35,7 +36,6 @@ def _softmax(x: np.ndarray) -> np.ndarray:
 
 def ml_pick(df: pd.DataFrame, question_pool: list[dict]) -> dict:
     """Pick the question whose subtopic scores highest on weakness."""
-    from sklearn.preprocessing import StandardScaler
 
     features_df = _compute_features(df)
     if features_df.empty:
