@@ -11,11 +11,8 @@ async def daily_schedule_refresh(context: ContextTypes.DEFAULT_TYPE) -> None:
     """Runs at the start of each user's daily window. Computes delays for the day
     and schedules the first question. Each fired question schedules the next."""
     chat_id  = context.job.data["chat_id"]
-    config   = get_user_schedule(chat_id)
-    sh, sm   = map(int, config["window_start"].split(":"))
-    eh, em   = map(int, config["window_end"].split(":"))
-    window_s = (eh * 60 + em - sh * 60 - sm) * 60
-    delays   = calculate_delays(chat_id, config["n"], window_s)
+    config = get_user_schedule(chat_id)
+    delays = calculate_delays(chat_id, config["n"], config["window_start"], config["window_end"])
 
     context.bot_data[chat_id] = {"delays": delays, "index": 0}
     context.job_queue.run_once(push_question, when=delays[0],

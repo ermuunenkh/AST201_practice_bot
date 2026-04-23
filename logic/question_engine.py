@@ -1,6 +1,7 @@
 import json
 import math
 import random
+import pandas as pd
 from config import POOL_PATH, USER_SCHEDULES
 from database.db_handler import get_user_data
 
@@ -57,20 +58,93 @@ def get_user_schedule(chat_id: int) -> dict:
     return  USER_SCHEDULES[chat_id]
 
 
-def calculate_delays(chat_id: int, n: int, window_seconds: int) -> list[int]:
+def calculate_delays(chat_id: int, n: int, window_start: str, window_end: str) -> list[int]:
     """
     Returns a list of n gap durations (seconds) for sequential scheduling:
       delays[0] = gap from window start → Q1
       delays[i] = gap from Q(i) → Q(i+1)
 
-    TODO: use get_user_data(chat_id) to identify the user's most active
-          periods and cluster questions around those times instead of
-          distributing them evenly.
+    Uses gravitational force field over 10-min bins: each bin attracts slots
+    proportional to its answer mass and inversely proportional to distance².
+    Slots are placed greedily at force peaks with 10-min suppression zones.
+    Falls back to equal spacing if no in-window history exists.
     """
-    slot = window_seconds // n
-    delays = []
+    MIN_GAP_MIN = 10  # minutes
+    BIN_SIZE    = 10  # minutes
+
+    sh, sm = map(int, window_start.split(":"))
+    eh, em = map(int, window_end.split(":"))
+    window_start_min = sh * 60 + sm
+    window_end_min   = eh * 60 + em
+    window_len_min   = window_end_min - window_start_min
+
+    def _equal_spacing() -> list[int]:
+        slot = (window_len_min * 60) // n
+        return [max(MIN_GAP_MIN * 60, slot + random.randint(-slot // 6, slot // 6)) for _ in range(n)]
+
+    df = get_user_data(chat_id)
+    if df.empty:
+        return _equal_spacing()
+
+    df["answered_at"]  = pd.to_datetime(df["answered_at"])
+    df["minute_of_day"] = df["answered_at"].dt.hour * 60 + df["answered_at"].dt.minute
+
+    # --- Build 10-min bin masses (relative to window start) ---
+    n_bins = max(1, window_len_min // BIN_SIZE)
+    masses = [0] * n_bins
+    for mod in df["minute_of_day"]:
+        if window_start_min <= mod < window_end_min:
+            idx = min((mod - window_start_min) // BIN_SIZE, n_bins - 1)
+            masses[idx] += 1
+
+    if sum(masses) == 0:
+        return _equal_spacing()
+
+    # --- Compute gravitational force field over every minute in the window ---
+    force = [0.0] * window_len_min
+    for t in range(window_len_min):
+        for b, mass in enumerate(masses):
+            if mass == 0:
+                continue
+            bin_center = b * BIN_SIZE + BIN_SIZE // 2
+            dist = abs(t - bin_center)
+            force[t] += mass / max(1, dist ** 2)
+
+    # --- Greedy slot placement with mass decay ---
+    DECAY = 0.1  # bin mass multiplier after a slot is placed near it
+    masses_live = masses[:]
+    offsets_min = []
+
     for _ in range(n):
-        jitter = random.randint(0, slot // 3)
-        delays.append(max(60, slot - slot // 6 + jitter))
+        # Recompute force field from current (decayed) masses
+        force_field = [0.0] * window_len_min
+        for t in range(window_len_min):
+            for b, mass in enumerate(masses_live):
+                if mass == 0:
+                    continue
+                bin_center = b * BIN_SIZE + BIN_SIZE // 2
+                dist = abs(t - bin_center)
+                force_field[t] += mass / max(1, dist ** 2)
+
+        max_force = max(force_field)
+        candidates = [t for t, f in enumerate(force_field) if f >= max_force * 0.99]
+        peak = random.choice(candidates)
+        offsets_min.append(min(peak + random.randint(0, BIN_SIZE - 1), window_len_min - 1))
+
+        # Decay bins within MIN_GAP of the placed slot
+        for b in range(len(masses_live)):
+            bin_center = b * BIN_SIZE + BIN_SIZE // 2
+            if abs(peak - bin_center) <= MIN_GAP_MIN:
+                masses_live[b] *= DECAY
+
+    offsets_min = sorted(offsets_min)
+
+    # --- Convert absolute offsets → sequential gap durations ---
+    delays = []
+    prev = 0
+    for o in offsets_min:
+        gap = max(MIN_GAP_MIN * 60, (o - prev) * 60)
+        delays.append(gap)
+        prev = o
     return delays
 
