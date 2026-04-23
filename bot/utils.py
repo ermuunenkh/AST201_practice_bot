@@ -30,30 +30,10 @@ def question_keyboard(letters: list[str]) -> InlineKeyboardMarkup:
 
 
 
-def build_tf_question_text(q: dict, chosen: str | None = None) -> str:
-    body = f"🔭 *Question:*\n\n{escape(q['question'])}\n\n"
-    for option in ["True", "False"]:
-        if chosen is None:
-            body += f"\\- {option}\n"
-        elif option == q["answer"]:
-            body += f"*\\- {option}* ✅\n"
-        elif option == chosen:
-            body += f"*\\- {option}* ❌\n"
-        else:
-            body += f"\\- {option}\n"
-    return body
-
-
-def tf_keyboard() -> InlineKeyboardMarkup:
-    return InlineKeyboardMarkup([[
-        InlineKeyboardButton("True", callback_data="ans_True"),
-        InlineKeyboardButton("False", callback_data="ans_False"),
-    ]])
-
 
 async def send_question(message: Message, q: dict) -> None:
     text = build_question_text(q)
-    keyboard = question_keyboard(list(q["options"].keys())) if q["type"] == "MC" else tf_keyboard()
+    keyboard = question_keyboard(list(q["options"].keys()))
     image_path = q.get("image")
 
     if image_path:
@@ -89,7 +69,7 @@ def stats_keyboard() -> InlineKeyboardMarkup:
 
 async def push_send_question(context, chat_id: int, q: dict) -> None:
     text     = build_question_text(q)
-    keyboard = question_keyboard(list(q["options"].keys())) if q["type"] == "MC" else tf_keyboard()
+    keyboard = question_keyboard(list(q["options"].keys()))
     image_path = q.get("image")
 
     if image_path:

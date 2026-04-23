@@ -24,9 +24,8 @@ USER_SCHEDULES = {
 EXAM_DEADLINE = datetime(2026, 4, 28, 14, 0, 0, tzinfo=ZoneInfo("America/Toronto"))
 
 # Paths - Don't touch here
-DB_PATH       = Path("database/astrobot.db")
-SCHEMA_PATH   = Path("database/schema.sql")
-POOL_PATH     = Path("database/question_pool.json")
-RAW_POOL_PATH = Path("database/question_pool.json")
-IMGS_DIR      = Path("database/imgs")
-TEMP_DIR      = Path("database/temp")
+DB_PATH     = Path("database/astrobot.db")
+SCHEMA_PATH = Path("database/schema.sql")
+POOL_PATH   = Path("database/question_pool.json")
+IMGS_DIR    = Path("database/imgs")
+TEMP_DIR    = Path("database/temp")

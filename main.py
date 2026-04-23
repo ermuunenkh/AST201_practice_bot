@@ -3,11 +3,9 @@ from config import BOT_TOKEN
 from bot.handlers import cmd_start, cmd_stats, handle_answer
 from bot.utils import ignore, on_startup
 from database.db_handler import init_db
-from database.question_cleaner import build_question_pool
 from src.image_handler import compress_images
 
 init_db()
-build_question_pool()
 compress_images()
 
 app = ApplicationBuilder().token(BOT_TOKEN).post_init(on_startup).build()
