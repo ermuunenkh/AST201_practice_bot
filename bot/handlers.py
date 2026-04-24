@@ -33,6 +33,7 @@ async def push_question(context: ContextTypes.DEFAULT_TYPE) -> None:
     index     = state.get("index", 0)
 
     question  = pick_question(chat_id)
+    context.bot_data[chat_id]["current_question"] = question
     await push_send_question(context, chat_id, question)
 
     next_index = index + 1
@@ -63,8 +64,10 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    data = query.data
-    question = context.user_data.get("question")
+    data     = query.data
+    chat_id  = query.message.chat_id
+    question = context.user_data.get("question") or \
+               context.bot_data.get(chat_id, {}).get("current_question")
 
     if data.startswith("ans_"):
         if not question:
