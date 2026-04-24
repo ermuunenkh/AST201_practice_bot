@@ -4,9 +4,11 @@ from bot.handlers import cmd_start, cmd_stats, handle_answer
 from bot.utils import ignore, on_startup
 from database.db_handler import init_db
 from src.image_handler import compress_images
+from logs.logger import log
 
 init_db()
 compress_images()
+log("BOT started successfully")
 
 app = ApplicationBuilder().token(BOT_TOKEN).post_init(on_startup).build()
 app.add_handler(CommandHandler("ask", cmd_start))

@@ -37,12 +37,15 @@ async def send_question(message: Message, q: dict) -> None:
     image_path = q.get("image")
 
     if image_path:
-        temp_path = decompress_image(image_path)
         try:
-            with open(temp_path, "rb") as img:
-                await message.reply_photo(photo=img)
-        finally:
-            temp_path.unlink(missing_ok=True)
+            temp_path = decompress_image(image_path)
+            try:
+                with open(temp_path, "rb") as img:
+                    await message.reply_photo(photo=img)
+            finally:
+                temp_path.unlink(missing_ok=True)
+        except FileNotFoundError as e:
+            print(f"[WARN] {e}")
 
     await message.reply_text(
         text,
@@ -73,12 +76,17 @@ async def push_send_question(context, chat_id: int, q: dict) -> None:
     image_path = q.get("image")
 
     if image_path:
-        temp_path = decompress_image(image_path)
         try:
-            with open(temp_path, "rb") as img:
-                await context.bot.send_photo(chat_id=chat_id, photo=img)
-        finally:
-            temp_path.unlink(missing_ok=True)
+            temp_path = decompress_image(image_path)
+        except FileNotFoundError as e:
+            print(f"[WARN] {e}")
+            temp_path = None
+        if temp_path:
+            try:
+                with open(temp_path, "rb") as img:
+                    await context.bot.send_photo(chat_id=chat_id, photo=img)
+            finally:
+                temp_path.unlink(missing_ok=True)
 
     await context.bot.send_message(
         chat_id=chat_id,

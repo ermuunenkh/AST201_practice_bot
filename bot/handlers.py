@@ -4,6 +4,7 @@ from bot.utils import build_question_text, explanation_keyboard, stats_keyboard,
 from logic.question_engine import pick_question, get_user_schedule, calculate_delays
 from logic.stats import build_stats_text
 from database.db_handler import record_answer
+from logs.logger import log
 from config import CHAT_IDS
 
 
@@ -41,6 +42,7 @@ async def push_question(context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def cmd_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    log(f"USER {update.effective_user.id} | /stats")
     text = build_stats_text(update.effective_user.id)
     await update.message.reply_text(
         text,
@@ -50,6 +52,7 @@ async def cmd_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    log(f"USER {update.effective_user.id} | /ask")
     question = pick_question(update.effective_user.id)
     context.user_data["question"] = question
     await send_question(update.message, question)
@@ -60,11 +63,17 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
 
     data = query.data
-    question = context.user_data.get("question", {})
+    question = context.user_data.get("question")
 
     if data.startswith("ans_"):
+        if not question:
+            log(f"USER {query.from_user.id} | stale answer tap — no question in context", level="warning")
+            await query.edit_message_reply_markup(reply_markup=None)
+            return
+
         chosen = data[4:]
         is_correct = chosen == question.get("answer")
+        log(f"USER {query.from_user.id} | Q{question['id']} answered {chosen} ({'correct' if is_correct else 'wrong'})")
 
         record_answer(query.from_user.id, question["id"], question["topic"], question["sub_topic"], chosen, is_correct)
 
