@@ -9,6 +9,8 @@ load_dotenv()
 BOT_TOKEN = os.environ['BOT_TOKEN']
 CHAT_IDS = [
     int(os.environ['CHAT_ID_USER1']),
+    int(os.environ['CHAT_ID_USER2']),
+    int(os.environ['CHAT_ID_USER3']),
 ]
 
 # Need to modify this code by hand.
@@ -16,6 +18,16 @@ USER_SCHEDULES = {
     CHAT_IDS[0]: {
         "window_start": "12:00",
         "window_end":   "23:59",
+        "n":            5,
+    },
+    CHAT_IDS[1]: {
+        "window_start": "10:00",
+        "window_end":   "22:00",
+        "n":            5,
+    },
+    CHAT_IDS[2]: {
+        "window_start": "09:00",
+        "window_end":   "21:00",
         "n":            5,
     }
 }

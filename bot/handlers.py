@@ -1,4 +1,5 @@
 from telegram import Update
+from telegram.error import BadRequest
 from telegram.ext import ContextTypes
 from bot.utils import build_question_text, explanation_keyboard, stats_keyboard, send_question, push_send_question
 from logic.question_engine import pick_question, get_user_schedule, calculate_delays
@@ -68,7 +69,10 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data.startswith("ans_"):
         if not question:
             log(f"USER {query.from_user.id} | stale answer tap — no question in context", level="warning")
-            await query.edit_message_reply_markup(reply_markup=None)
+            try:
+                await query.edit_message_reply_markup(reply_markup=None)
+            except BadRequest:
+                pass
             return
 
         chosen = data[4:]
