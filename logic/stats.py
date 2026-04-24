@@ -48,9 +48,9 @@ def build_stats_text(user_id: int) -> str:
     n_subtopics_seen = df_uniq["sub_topic"].nunique() if not df_uniq.empty else 0
     n_questions_seen = len(df_uniq)
 
-    # Strongest / weakest: per subtopic accuracy over full history, min 3 attempts
-    strongest_name = weakest_name = "N/A"
-    strongest_acc  = weakest_acc  = "N/A"
+    # Top 3 strongest / weakest: per subtopic accuracy over full history, min 3 attempts
+    top_strongest = []
+    top_weakest   = []
 
     if not df_full.empty:
         subtopic_stats = (
@@ -61,12 +61,17 @@ def build_stats_text(user_id: int) -> str:
         qualified = subtopic_stats[subtopic_stats["attempts"] >= _MIN_ATTEMPTS]
 
         if not qualified.empty:
-            strongest = qualified["accuracy"].idxmax()
-            weakest   = qualified["accuracy"].idxmin()
-            strongest_name = strongest
-            strongest_acc  = _pct(qualified.loc[strongest, "accuracy"])
-            weakest_name   = weakest
-            weakest_acc    = _pct(qualified.loc[weakest, "accuracy"])
+            top_strongest = qualified.nlargest(3, "accuracy")[["accuracy"]].reset_index().values.tolist()
+            top_weakest   = qualified.nsmallest(3, "accuracy")[["accuracy"]].reset_index().values.tolist()
+
+    def _rank_lines(entries: list, label: str) -> list[str]:
+        if not entries:
+            return [f"*{label}* — _Not ready to assess_"]
+        result = [f"*{label}*"]
+        medals = ["🥇", "🥈", "🥉"]
+        for i, (name, acc) in enumerate(entries):
+            result.append(f"  {medals[i]} {escape(name)} `{_pct(acc)}`")
+        return result
 
     lines = [
         "*📊 Your Stats*",
@@ -75,8 +80,9 @@ def build_stats_text(user_id: int) -> str:
         f"  Subtopics: `{n_subtopics_seen} / {_total_subtopics}`",
         f"  Questions: `{n_questions_seen} / {_total_questions}`",
         "",
-        f"*Strongest* — {escape(strongest_name) + ' ' + strongest_acc if strongest_name != 'N/A' else '_Not ready to assess_'}",
-        f"*Weakest*   — {escape(weakest_name) + ' ' + weakest_acc if weakest_name != 'N/A' else '_Not ready to assess_'}",
+        *_rank_lines(top_strongest, "Strongest"),
+        "",
+        *_rank_lines(top_weakest, "Weakest"),
         "",
         "*Recent Accuracy*",
         f"  Last 10:  `{_recent_accuracy(df_uniq, 10)}`",
