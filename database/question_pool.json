@@ -9055,5 +9055,209 @@
     },
     "answer": "B",
     "explanation": "The CMB angular power spectrum encodes the universe's composition in the heights and positions of its acoustic peaks. Planck's precise measurements (2013–2018) yielded: ordinary baryonic matter = 4.9%, dark matter = 26.8%, dark energy = 68.3%. These numbers are remarkably consistent with independent measurements from baryon acoustic oscillations in galaxy surveys and Type Ia supernova distances — multiple independent lines of evidence pointing to the same 'cosmic recipe.' This concordance is one of the great triumphs of modern precision cosmology."
+  },
+  {
+    "id": 569,
+    "type": "MC",
+    "topic": "TOPIC 11: BUILDING THE HR DIAGRAM",
+    "sub_topic": "11.4 White Dwarfs on the HR Diagram",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "B-type main sequence star",
+      "B": "Red giant",
+      "C": "White dwarf",
+      "D": "Subgiant",
+      "E": "Neutron star"
+    },
+    "answer": "C",
+    "explanation": "The dot sits at high surface temperature (~18,000 K) but extremely low luminosity (~10⁻³ L☉), far below the main sequence. This is the white dwarf region — hot, Earth-sized remnants of low-mass stars.",
+    "image": "database/imgs/id_569.png"
+  },
+  {
+    "id": 570,
+    "type": "MC",
+    "topic": "TOPIC 11: BUILDING THE HR DIAGRAM",
+    "sub_topic": "11.3 Giants and Supergiants",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "Red dwarf",
+      "B": "Red giant",
+      "C": "Red supergiant",
+      "D": "AGB star",
+      "E": "Horizontal branch star"
+    },
+    "answer": "C",
+    "explanation": "The dot is at very low surface temperature (~3,500 K) and extremely high luminosity (~10⁵ L☉), placing it in the supergiant region. Red supergiants are the largest stars by radius and are the evolved end-state of the most massive stars.",
+    "image": "database/imgs/id_570.png"
+  },
+  {
+    "id": 571,
+    "type": "MC",
+    "topic": "TOPIC 11: BUILDING THE HR DIAGRAM",
+    "sub_topic": "11.2 The Main Sequence",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "K-type main sequence star",
+      "B": "Subgiant",
+      "C": "F-type main sequence star",
+      "D": "G-type main sequence star",
+      "E": "Red giant"
+    },
+    "answer": "D",
+    "explanation": "The dot sits at ~5,778 K and 1 L☉ — exactly the solar position on the main sequence. This is a G-type (yellow dwarf) star, fusing hydrogen in its core just like our Sun.",
+    "image": "database/imgs/id_571.png"
+  },
+  {
+    "id": 572,
+    "type": "MC",
+    "topic": "TOPIC 11: BUILDING THE HR DIAGRAM",
+    "sub_topic": "11.2 The Main Sequence",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "O-type main sequence star",
+      "B": "Blue supergiant",
+      "C": "B-type main sequence star",
+      "D": "White dwarf",
+      "E": "A-type main sequence star"
+    },
+    "answer": "C",
+    "explanation": "The dot lies on the main sequence at ~22,000 K and ~10⁴ L☉, consistent with a B-type star. B stars are hotter and more massive than the Sun but cooler and less luminous than O-type stars.",
+    "image": "database/imgs/id_572.png"
+  },
+  {
+    "id": 573,
+    "type": "MC",
+    "topic": "TOPIC 11: BUILDING THE HR DIAGRAM",
+    "sub_topic": "11.2 The Main Sequence",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "White dwarf",
+      "B": "Red giant",
+      "C": "K-type main sequence star",
+      "D": "Brown dwarf",
+      "E": "M-type main sequence star"
+    },
+    "answer": "E",
+    "explanation": "The dot is at cool temperature (~3,200 K) and very low luminosity (~5×10⁻³ L☉) on the lower main sequence. This is an M-type star (red dwarf) — the most common type of star in the galaxy.",
+    "image": "database/imgs/id_573.png"
+  },
+  {
+    "id": 574,
+    "type": "MC",
+    "topic": "TOPIC 11: BUILDING THE HR DIAGRAM",
+    "sub_topic": "11.3 Giants and Supergiants",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "K-type main sequence star",
+      "B": "Red giant",
+      "C": "Red supergiant",
+      "D": "Horizontal branch star",
+      "E": "AGB star"
+    },
+    "answer": "B",
+    "explanation": "The dot is at ~4,500 K but ~80 L☉, far above where a K-type main sequence star would sit (~0.1 L☉). This elevated luminosity at cool temperature places it in the red giant region — a star that has exhausted its core hydrogen and expanded.",
+    "image": "database/imgs/id_574.png"
+  },
+  {
+    "id": 575,
+    "type": "MC",
+    "topic": "TOPIC 13: LIFE CYCLE OF A SUN-LIKE STAR",
+    "sub_topic": "13.4 Helium Flash and Horizontal Branch",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "A-type main sequence star",
+      "B": "Subgiant",
+      "C": "Horizontal branch star",
+      "D": "Red giant",
+      "E": "White dwarf"
+    },
+    "answer": "C",
+    "explanation": "The dot is at ~7,500 K and ~40 L☉, sitting between the main sequence and the giant branch. Horizontal branch stars are low-mass stars fusing helium in their cores after the red giant phase, forming a roughly horizontal strip on the HR diagram.",
+    "image": "database/imgs/id_575.png"
+  },
+  {
+    "id": 576,
+    "type": "MC",
+    "topic": "TOPIC 11: BUILDING THE HR DIAGRAM",
+    "sub_topic": "11.3 Giants and Supergiants",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "O-type main sequence star",
+      "B": "B-type main sequence star",
+      "C": "Blue supergiant",
+      "D": "Horizontal branch star",
+      "E": "Wolf-Rayet star"
+    },
+    "answer": "C",
+    "explanation": "The dot is at ~14,000 K and ~2×10⁵ L☉, well above the main sequence luminosity at that temperature. This places it in the supergiant region. Blue supergiants are massive evolved stars with high luminosity and relatively high surface temperature.",
+    "image": "database/imgs/id_576.png"
+  },
+  {
+    "id": 577,
+    "type": "MC",
+    "topic": "TOPIC 13: LIFE CYCLE OF A SUN-LIKE STAR",
+    "sub_topic": "13.3 Subgiant and Red Giant Phases",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "G-type main sequence star",
+      "B": "F-type main sequence star",
+      "C": "Subgiant",
+      "D": "Red giant",
+      "E": "Horizontal branch star"
+    },
+    "answer": "C",
+    "explanation": "The dot sits at ~6,000 K and ~3 L☉, slightly above the main sequence luminosity expected at that temperature (~1.5 L☉). This places it in the subgiant region — stars that have exhausted core hydrogen and are beginning to expand toward the giant branch.",
+    "image": "database/imgs/id_577.png"
+  },
+  {
+    "id": 578,
+    "type": "MC",
+    "topic": "TOPIC 11: BUILDING THE HR DIAGRAM",
+    "sub_topic": "11.2 The Main Sequence",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "G-type main sequence star",
+      "B": "M-type main sequence star",
+      "C": "Red giant",
+      "D": "White dwarf",
+      "E": "K-type main sequence star"
+    },
+    "answer": "E",
+    "explanation": "The dot is at ~4,500 K and ~0.13 L☉, sitting directly on the main sequence. At this temperature and luminosity, the star is a K-type (orange dwarf) main sequence star — slightly cooler and less luminous than the Sun.",
+    "image": "database/imgs/id_578.png"
+  },
+  {
+    "id": 579,
+    "type": "MC",
+    "topic": "TOPIC 11: BUILDING THE HR DIAGRAM",
+    "sub_topic": "11.2 The Main Sequence",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "Blue supergiant",
+      "B": "B-type main sequence star",
+      "C": "White dwarf",
+      "D": "O-type main sequence star",
+      "E": "Neutron star"
+    },
+    "answer": "D",
+    "explanation": "The dot is at ~35,000 K and ~3.5×10⁵ L☉, on the upper main sequence. This is an O-type star — the hottest, most massive, and most luminous type of main sequence star, with lifetimes of only a few million years.",
+    "image": "database/imgs/id_579.png"
+  },
+  {
+    "id": 580,
+    "type": "MC",
+    "topic": "TOPIC 13: LIFE CYCLE OF A SUN-LIKE STAR",
+    "sub_topic": "13.5 Thermal Pulses and Mass Loss",
+    "question": "The red dot on the HR diagram marks the position of a star. Which of the following best describes this star?",
+    "options": {
+      "A": "Red dwarf",
+      "B": "Red giant",
+      "C": "Red supergiant",
+      "D": "AGB star",
+      "E": "Horizontal branch star"
+    },
+    "answer": "D",
+    "explanation": "The dot is at ~3,800 K and ~2,000 L☉, above the red giant branch but below the most extreme supergiants. This is consistent with an AGB (Asymptotic Giant Branch) star — an evolved low-to-intermediate mass star fusing helium in a shell, which can be extremely luminous.",
+    "image": "database/imgs/id_580.png"
   }
 ]

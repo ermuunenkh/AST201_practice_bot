@@ -12,15 +12,15 @@ def build_question_text(q: dict, chosen: str | None = None) -> str:
     body = f"🔭 *Question:*\n\n{escape(q['question'])}\n\n"
     for letter, text in q["options"].items():
         if chosen is None:
-            body += f"{letter}\\. {escape(text)}\n"
+            body += f"*{letter}\\.* {escape(text)}\n\n"
         elif letter == q["answer"]:
-            body += f"*{letter}\\. {escape(text)}* ✅\n"
+            body += f"*{letter}\\.* {escape(text)} ✅\n\n"
         elif letter == chosen:
-            body += f"*{letter}\\. {escape(text)}* ❌\n"
+            body += f"*{letter}\\.* {escape(text)} ❌\n\n"
         else:
-            body += f"{letter}\\. {escape(text)}\n"
+            body += f"*{letter}\\.* {escape(text)}\n\n"
     if chosen is not None:
-        body += f"\n💡 *Explanation*\n\n{escape(q['explanation'])}"
+        body += f"💡 *Explanation*\n\n{escape(q['explanation'])}"
     return body
 
 
